@@ -357,6 +357,12 @@ th {
 th:first-child,
 td:first-child { text-align: left; }
 
+.schedule-highlight {
+  color: var(--blue);
+  font-weight: 800;
+  background: #eef4ff;
+}
+
 .schedule-wrap table { min-width: 1180px; }
 
 @media (min-width: 1200px) {

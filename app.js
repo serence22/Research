@@ -218,6 +218,7 @@ function table(el, columns, rows) {
       const td = document.createElement("td");
       const value = row[key];
       td.textContent = typeof value === "number" ? Number(value.toFixed(5)).toString() : (value ?? "");
+      if (key === "range" || key === "temp") td.classList.add("schedule-highlight");
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
