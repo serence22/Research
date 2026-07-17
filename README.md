@@ -51,6 +51,34 @@ https://your-app-name.streamlit.app
 
 Open that link from any laptop without downloading the project.
 
+## Run Directly With GitHub Pages
+
+This repository also includes a static mobile web app:
+
+```text
+index.html
+style.css
+app.js
+```
+
+To publish it with GitHub Pages:
+
+1. Open the repository on GitHub.
+2. Go to `Settings` -> `Pages`.
+3. Under `Build and deployment`, choose:
+   - Source: `Deploy from a branch`
+   - Branch: `main`
+   - Folder: `/root`
+4. Save.
+
+The app URL will look like:
+
+```text
+https://serence22.github.io/Research/
+```
+
+Use this GitHub Pages link when you want to open the app directly from a phone browser.
+
 ## Google Sheets
 
 Paste a Google Sheets URL into `Workbook / Google Sheet URL`, then press `Analyze`.
