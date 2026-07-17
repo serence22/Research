@@ -227,10 +227,10 @@ with tabs[1]:
 with tabs[2]:
     st.subheader("Prediction")
     col1, col2, col3, col4 = st.columns(4)
-    initial_mass = col1.number_input("Initial P mg", min_value=0.001, value=2000.0, step=100.0)
-    temperature = col2.number_input("Temperature C", value=390.0, step=1.0)
-    process_time = col3.number_input("Process time", min_value=0.001, value=4.0, step=0.5)
-    time_unit = col4.selectbox("Time unit", ["hour", "min"])
+    initial_mass = col1.number_input("Initial P mg", min_value=0.001, value=2000.0, step=100.0, key="prediction_initial_p_mg")
+    temperature = col2.number_input("Temperature C", value=390.0, step=1.0, key="prediction_temperature_c")
+    process_time = col3.number_input("Process time", min_value=0.001, value=4.0, step=0.5, key="prediction_process_time")
+    time_unit = col4.selectbox("Time unit", ["hour", "min"], key="prediction_time_unit")
     try:
         pred = predict_loss_composite(fit_0_120, fit_after_120, initial_mass, temperature, process_time, time_unit)
         pcols = st.columns(4)
@@ -246,15 +246,15 @@ with tabs[2]:
 with tabs[3]:
     st.subheader("Constant Rate Schedule")
     c1, c2, c3, c4 = st.columns(4)
-    schedule_initial = c1.number_input("Initial P mg", min_value=0.001, value=2000.0, step=100.0)
-    schedule_hours = c2.number_input("Process h", min_value=0.001, value=17.0, step=1.0)
-    target_rate = c3.number_input("Target mg/h", min_value=0.001, value=110.0, step=5.0)
-    minimum_rate = c4.number_input("Minimum mg/h", min_value=0.001, value=80.0, step=5.0)
+    schedule_initial = c1.number_input("Initial P mg", min_value=0.001, value=2000.0, step=100.0, key="schedule_initial_p_mg")
+    schedule_hours = c2.number_input("Process h", min_value=0.001, value=17.0, step=1.0, key="schedule_process_h")
+    target_rate = c3.number_input("Target mg/h", min_value=0.001, value=110.0, step=5.0, key="schedule_target_mg_h")
+    minimum_rate = c4.number_input("Minimum mg/h", min_value=0.001, value=80.0, step=5.0, key="schedule_minimum_mg_h")
     c5, c6, c7, c8 = st.columns(4)
-    minimum_remaining = c5.number_input("Minimum remaining mg", min_value=0.0, value=50.0, step=10.0)
-    start_temp = c6.number_input("Start C", value=330.0, step=1.0)
-    end_temp = c7.number_input("End C", value=410.0, step=1.0)
-    time_step = c8.number_input("Time step h", min_value=0.001, value=1.0, step=0.5)
+    minimum_remaining = c5.number_input("Minimum remaining mg", min_value=0.0, value=50.0, step=10.0, key="schedule_minimum_remaining_mg")
+    start_temp = c6.number_input("Start C", value=330.0, step=1.0, key="schedule_start_c")
+    end_temp = c7.number_input("End C", value=410.0, step=1.0, key="schedule_end_c")
+    time_step = c8.number_input("Time step h", min_value=0.001, value=1.0, step=0.5, key="schedule_time_step_h")
     result = calculate_composite_schedule(
         fit_0_120,
         fit_after_120,
