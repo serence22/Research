@@ -290,8 +290,8 @@ function renderArrheniusChart() {
     data: { datasets },
     options: {
       maintainAspectRatio: false,
-      parsing: false,
-      scales: { x: { title: { display: true, text: "1/T, K^-1" } }, y: { title: { display: true, text: "ln(k)" } } },
+      parsing: { xAxisKey: "x", yAxisKey: "y" },
+      scales: { x: { type: "linear", title: { display: true, text: "1/T, K^-1" } }, y: { title: { display: true, text: "ln(k)" } } },
       plugins: { legend: { position: "bottom" } },
     },
   });
@@ -353,6 +353,10 @@ function renderPredictionChart(mass, pred) {
     dataRemain.push({ x: t, y: rem });
     dataLoss.push({ x: t, y: mass - rem });
   }
+  const yValues = [...dataRemain, ...dataLoss].map((p) => p.y);
+  const yMin = Math.min(...yValues);
+  const yMax = Math.max(...yValues);
+  const pad = Math.max(1, (yMax - yMin) * 0.08);
   if (state.charts.prediction) state.charts.prediction.destroy();
   state.charts.prediction = new Chart($("predictionChart"), {
     type: "line",
@@ -364,8 +368,11 @@ function renderPredictionChart(mass, pred) {
     },
     options: {
       maintainAspectRatio: false,
-      parsing: false,
-      scales: { x: { title: { display: true, text: "Time, min" } }, y: { title: { display: true, text: "mg" } } },
+      parsing: { xAxisKey: "x", yAxisKey: "y" },
+      scales: {
+        x: { type: "linear", title: { display: true, text: "Time, min" } },
+        y: { min: Math.max(0, yMin - pad), max: yMax + pad, title: { display: true, text: "mg" } },
+      },
       plugins: { legend: { position: "bottom" } },
     },
   });
