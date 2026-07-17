@@ -29,6 +29,28 @@ Or double-click:
 run_app.bat
 ```
 
+## Run Online With Streamlit Cloud
+
+1. Push this repository to GitHub.
+2. Open https://share.streamlit.io
+3. Sign in with GitHub.
+4. Create a new app from this repository.
+5. Set the main file path to:
+
+```text
+streamlit_app.py
+```
+
+6. Deploy.
+
+After deployment, Streamlit creates a browser link like:
+
+```text
+https://your-app-name.streamlit.app
+```
+
+Open that link from any laptop without downloading the project.
+
 ## Google Sheets
 
 Paste a Google Sheets URL into `Workbook / Google Sheet URL`, then press `Analyze`.
